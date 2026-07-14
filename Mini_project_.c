@@ -1,7 +1,7 @@
 #include<lpc21xx.h>
-#define LCD_D 0xff<<7 
-#define RS 1<<18
-#define EN 1<<19
+#define LCD_D 0xff
+#define RS 1<<8
+#define EN 1<<9
 #define LED_1 1<<10
 #define LED_2 1<<11
 #define SW 17
@@ -41,7 +41,7 @@ void LCD_INIT(void)
 
 {
 PINSEL0 |= 0;
-IODIR1 |= LCD_D|RS|EN;
+IODIR0 |= LCD_D|RS|EN;
 LCD_CMD(0X01);
 LCD_CMD(0X02);
 LCD_CMD(0X0C);
@@ -51,22 +51,22 @@ LCD_CMD(0X80);
 
 void LCD_CMD(unsigned char cmd)
 {
-	IOCLR0=LCD_D;
-	IOSET0=cmd;
-	IOCLR0=RS;
-	IOSET0=EN;
+	IOCLR0 = LCD_D;
+	IOSET0 = cmd;
+	IOCLR0 = RS;
+	IOSET0 = EN;
 	delay_ms(2);
-	IOCLR0=EN;
+	IOCLR0 = EN;
 }
 
 void LCD_DATA(unsigned char d)
 {
-	IOCLR0=LCD_D;
-	IOSET0=d;
-	IOSET0=RS;
-	IOSET0=EN;
+	IOCLR0 = LCD_D;
+	IOSET0 = d;
+	IOSET0 = RS;
+	IOSET0 = EN;
 	delay_ms(2);
-	IOCLR0=EN;
+	IOCLR0 = EN;
 }
 
 void LCD_INT(int number)
@@ -211,7 +211,7 @@ void LCD_TITLE()
 {
 	LCD_CMD(0X80);
 	LCD_STR("interrupt driven automatic vistor count system");
-	delay_s(5);
+	delay_s(3);
 	LCD_CMD(0X01);
 }
 
