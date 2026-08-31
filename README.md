@@ -124,14 +124,3 @@ VisitorCounter/
 - ☁️ Cloud Dashboard
 
 ---
-
-## 👨‍💻 Author
-
-**B. Vishnu**
-
-
----
-
-## 📄 License
-
-📚 This project is developed for educational purposes.
